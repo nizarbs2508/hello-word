@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'yourusername/your-app:latest'
+        DOCKER_IMAGE = 'nizarbsalem/hello-word:latest'
         DOCKER_REGISTRY = 'https://index.docker.io/v1/'
-        GITHUB_REPO = 'https://github.com/yourusername/your-app.git'
+        GITHUB_REPO = 'https://github.com/nizarbs2508/hello-word.git'
     }
 
     stages {
