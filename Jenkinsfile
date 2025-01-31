@@ -7,6 +7,10 @@ pipeline {
         GITHUB_REPO = 'https://github.com/nizarbs2508/hello-word.git'
     }
 
+    tools {
+        git "Default"  // Match this with the Git installation name you set in Global Tool Configuration
+    }
+
     stages {
         stage('Checkout') {
             steps {
