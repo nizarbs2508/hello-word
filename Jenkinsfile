@@ -30,7 +30,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    sh 'docker build -t $DOCKER_IMAGE .'
+                   sh 'docker build -t nizarbsalem/Interop2024:latest .'
                 }
             }
         }
@@ -38,12 +38,16 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
-                    sh 'docker push $DOCKER_IMAGE'
+                    sh 'docker login -u nizarbsalem -p Chnanah000!'
+                     sh 'docker push nizarbsalem/hello-word:latest'
                 }
             }
         }
-
+         stage('Déployer') {
+            steps {
+                sh 'docker run -d -p 8080:8080 nizarbsalem/hello-word:latest'
+            }
+        }
         stage('Deploy to Kubernetes') {
             steps {
                 script {
