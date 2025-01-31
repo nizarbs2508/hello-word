@@ -30,7 +30,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                   sh 'docker build -t nizarbsalem/Interop2024:latest .'
+                   sh 'docker build -t nizarbsalem/hello-word:latest .'
                 }
             }
         }
