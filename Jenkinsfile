@@ -1,12 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        DOCKER_IMAGE = 'nizarbsalem/hello-word:latest'
-        DOCKER_REGISTRY = 'https://index.docker.io/v1/'
-        GITHUB_REPO = 'https://github.com/nizarbs2508/hello-word.git'
-    }
-
     tools {
         jdk 'JDK 19'
         maven 'Maven 3.9.9'  // Nom de l'installation que vous avez configurée
@@ -30,7 +24,9 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                   sh 'docker build -t nizarbsalem/hello-word:latest .'
+                   sh 'docker login -u nizarbsalem -p Chnanah000!'
+                   sh 'docker build -t nizarbsalem/hello-word:tagname .'
+                   
                 }
             }
         }
@@ -39,7 +35,7 @@ pipeline {
             steps {
                 script {
                     sh 'docker login -u nizarbsalem -p Chnanah000!'
-                     sh 'docker push nizarbsalem/hello-word:latest'
+                    sh 'docker push nizarbsalem/hello-word:tagname'
                 }
             }
         }
