@@ -20,13 +20,14 @@ pipeline {
                 }
             }
         }
- stage('Check Docker Version') {
+       stage('Check Docker Version') {
             steps {
                 script {
                     sh 'docker --version'  // This should show the Docker version without errors
                 }
             }
-        stage('Docker Build') {
+       }  
+      stage('Docker Build') {
             steps {
                 script {
                    sh 'docker login -u nizarbsalem -p Chnanah000!'
