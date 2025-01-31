@@ -25,7 +25,7 @@ pipeline {
             steps {
                 script {
                    sh 'docker login -u nizarbsalem -p Chnanah000!'
-                   sh 'docker build -t nizarbsalem/hello-word:tagname .'
+                   sh 'docker build -t nizarbsalem/hello-word:latest .'
                    
                 }
             }
@@ -35,7 +35,7 @@ pipeline {
             steps {
                 script {
                     sh 'docker login -u nizarbsalem -p Chnanah000!'
-                    sh 'docker push nizarbsalem/hello-word:tagname'
+                    sh 'docker push nizarbsalem/hello-word:latest'
                 }
             }
         }
