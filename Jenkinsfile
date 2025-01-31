@@ -8,13 +8,14 @@ pipeline {
     }
 
     tools {
-        git "Default"  // Match this with the Git installation name you set in Global Tool Configuration
+        jdk 'JDK 19'
+        maven 'Maven 3.9.9'  // Nom de l'installation que vous avez configurée
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git url: "$GITHUB_REPO"
+                git branch: 'main', url: 'https://github.com/nizarbs2508/hello-word.git'
             }
         }
 
