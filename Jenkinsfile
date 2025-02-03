@@ -20,11 +20,21 @@ pipeline {
                 }
             }
         }
-     
+
+        
+        stage('Login to Docker') {
+            steps {
+                script {
+                    docker.withRegistry('https://index.docker.io', 'docker-credentials-id') {
+                        sh 'docker login -u nizarbsalem -p Chnanah000!'
+                    }
+                }
+            }
+        }
+        
       stage('Docker Build') {
             steps {
                 script {
-                   sh 'docker login -u nizarbsalem -p Chnanah000!'
                    sh 'docker build -t nizarbsalem/hello-word:latest .'
                    
                 }
