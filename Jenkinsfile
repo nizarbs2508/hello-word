@@ -22,15 +22,17 @@ pipeline {
         }
 
         
-        stage('Login to Docker') {
-            steps {
-                script {
-                    docker.withRegistry('https://index.docker.io', 'docker-credentials-id') {
-                        sh 'docker login -u nizarbsalem -p Chnanah000!'
-                    }
-                }
+stage('Login to Docker') {
+    steps {
+        script {
+            // Use Jenkins credentials to authenticate with Docker registry
+            docker.withRegistry('https://index.docker.io', 'docker-credentials-id') {
+                // Run your docker commands here
+                sh 'docker login'
             }
         }
+    }
+}
         
       stage('Docker Build') {
             steps {
