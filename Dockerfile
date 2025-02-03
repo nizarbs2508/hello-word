@@ -1,3 +1,5 @@
+RUN apt-get update && apt-get install -y docker.io
+
 # Use openjdk base image
 FROM openjdk:17-jdk-slim
 VOLUME /tmp
