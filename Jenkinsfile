@@ -46,6 +46,9 @@ pipeline {
      stage('Deploy to Kubernetes') {
             steps {
                 script {
+                    echo "Setting up Kubernetes environment"
+                    set PATH=%PATH%;C:\\Program Files\\Kubernetes
+                    kubectl version --client
                     echo "Deploying to Kubernetes with: ${K8S_DEPLOYMENT}"
                     bat "kubectl apply -f k8s/deployment.yaml"
                 }
