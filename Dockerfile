@@ -1,19 +1,17 @@
-# Use a base image
-FROM ubuntu:latest
+# Use an official OpenJDK runtime as a parent image
+FROM openjdk:11-jre-slim
 
-# Install necessary packages (e.g., OpenJDK)
-RUN apt-get update && apt-get install -y openjdk-11-jdk
-
-# Set the working directory
+# Set the working directory in the container
 WORKDIR /app
 
-# Copy application files to the container
-COPY . .
+# Copy the local JAR file to the container
+COPY target/demo-0.0.1-SNAPSHOT.jar app.jar
 
-# Expose a port (if necessary)
+# Expose the port the app runs on
 EXPOSE 8080
 
-# Set the command to run your application (if necessary)
-CMD ["java", "-jar", "hello-word.jar"]
+# Run the JAR file
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+
 
 
