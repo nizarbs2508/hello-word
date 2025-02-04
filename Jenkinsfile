@@ -6,10 +6,16 @@ pipeline {
         maven 'Maven 3.9.9'  // Nom de l'installation que vous avez configurée
     }
 
+    environment {
+        DOCKER_IMAGE = "nizarbsalem/hello-word-app"
+        DOCKER_TAG = "latest"
+        K8S_DEPLOYMENT = "k8s/deployment.yaml"
+    }
+
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/nizarbs2508/hello-word.git'
+                git branch: 'main', credentialsId: 'github-credentials-id', url: 'https://github.com/nizarbs2508/hello-word.git'
             }
         }
 
@@ -21,45 +27,30 @@ pipeline {
             }
         }
 
-        
-stage('Login to Docker') {
-    steps {
-        script {
-            // Use Jenkins credentials to authenticate with Docker registry
-            docker.withRegistry('https://index.docker.io', 'docker-credentials-id') {
-                // Run your docker commands here
-                sh 'docker login'
-            }
-        }
-    }
-}
-        
-      stage('Docker Build') {
+         stage('Build Docker Image') {
             steps {
                 script {
-                   sh 'docker build -t nizarbsalem/hello-word:latest .'
-                   
+                    sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
                 }
             }
         }
 
-        stage('Push to Docker Hub') {
+        
+
+         stage('Push Docker Image') {
             steps {
                 script {
-                    sh 'docker login -u nizarbsalem -p Chnanah000!'
-                    sh 'docker push nizarbsalem/hello-word:latest'
+                    withDockerRegistry([credentialsId: 'dockerhub-credentials-id', url: '']) {
+                        sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    }
                 }
             }
         }
-         stage('Déployer') {
-            steps {
-                sh 'docker run -d -p 8080:8080 nizarbsalem/hello-word:latest'
-            }
-        }
+        
         stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    sh 'kubectl apply -f k8s/deployment.yaml'
+                    sh "kubectl apply -f ${K8S_DEPLOYMENT}"
                 }
             }
         }
