@@ -40,6 +40,7 @@ pipeline {
 
         stage('Test Docker') {
             steps {
+                bat 'set PATH=%PATH%;C:\\Program Files\\Docker\\Docker\\resources\\bin'
                 bat 'docker --version'
                 bat 'docker ps'
             }
