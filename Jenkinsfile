@@ -1,6 +1,10 @@
 pipeline {
     agent any
-
+    
+    parameters {
+        string(name: 'version', defaultValue: '1.0.0', description: 'Version de l’application')
+    }
+    
     environment {
         DOCKER_IMAGE = "nizarbsalem/hello-word-app"
         DOCKER_TAG = "latest"
@@ -52,6 +56,7 @@ pipeline {
                     kubectl version --client
                     """
                     kubectl version --client
+                    echo "Deploying version: ${params.version}"
                     bat "kubectl apply -f k8s/deployment.yaml"
                 }
             }
