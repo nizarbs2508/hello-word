@@ -47,7 +47,7 @@ pipeline {
             steps {
                 script {
                     echo "Setting up Kubernetes environment"
-                    set PATH=%PATH%;C:\\Program Files\\Kubernetes
+                    set PATH=%PATH%;C:\\ProgramData\\chocolatey\\bin
                     kubectl version --client
                     echo "Deploying to Kubernetes with: ${K8S_DEPLOYMENT}"
                     bat "kubectl apply -f k8s/deployment.yaml"
