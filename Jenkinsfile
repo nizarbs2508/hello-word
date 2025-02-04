@@ -14,13 +14,6 @@ pipeline {
             }
         }
 
-        stage('Debug') {
-            steps {
-                bat 'where cmd'
-                bat 'cmd /c echo CMD is working'
-            }
-        }
-
         stage('Build') {
             steps {
                 script {
@@ -28,14 +21,6 @@ pipeline {
                       bat 'mvn clean install'
                      }
                 } 
-            }
-        }
-
-
-        stage('Test Docker') {
-            steps {
-                bat '"C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe" --version'
-                bat '"C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe" ps'
             }
         }
          stage('Build Docker Image') {
@@ -52,7 +37,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry([credentialsId: 'dockerhub-credentials-id', url: '']) {
-                        bat "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                        bat "C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe push nizarbsalem/hello-word-app:latest"
                     }
                 }
             }
