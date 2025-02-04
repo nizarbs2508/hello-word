@@ -25,10 +25,17 @@ pipeline {
             steps {
                 script {
                      withEnv(["PATH+MAVEN=C:\\Program Files\\Java\\apache-maven-3.9.9-bin\\apache-maven-3.9.9\\bin"]) {
-                    bat 'mvn clean install'
-                }
+                      bat 'mvn clean install'
+                     }
+                } 
             }
         }
+
+        stage('Test Docker') {
+            steps {
+                bat 'docker --version'
+                bat 'docker ps'
+            }
         }
          stage('Build Docker Image') {
             steps {
