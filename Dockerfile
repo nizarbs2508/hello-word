@@ -1,8 +1,19 @@
-RUN apt-get update && apt-get install -y docker.io
+# Use a base image
+FROM ubuntu:latest
 
-# Use openjdk base image
-FROM openjdk:17-jdk-slim
-VOLUME /tmp
-COPY target/demo-1.0.jar hello-word.jar
-ENTRYPOINT ["java", "-jar", "/hello-word.jar"]
+# Install necessary packages (e.g., OpenJDK)
+RUN apt-get update && apt-get install -y openjdk-11-jdk
+
+# Set the working directory
+WORKDIR /app
+
+# Copy application files to the container
+COPY . .
+
+# Expose a port (if necessary)
+EXPOSE 8080
+
+# Set the command to run your application (if necessary)
+CMD ["java", "-jar", "hello-word.jar"]
+
 
