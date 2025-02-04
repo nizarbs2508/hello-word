@@ -52,7 +52,6 @@ pipeline {
                     kubectl version --client
                     """
                     kubectl version --client
-                    echo "Deploying to Kubernetes with: ${K8S_DEPLOYMENT}"
                     bat "kubectl apply -f k8s/deployment.yaml"
                 }
             }
