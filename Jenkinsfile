@@ -37,7 +37,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry([credentialsId: 'dckr_pat_w7wZhLp7N18lE4NTB-tqPWsVvuY', url: '']) {
-                       bat '"C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe" push nizarbsalem/hello-word-app:latest'
+                       bat '"C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe" push nizarbsalem/hello-word-app:latest --disable-content-trust'
                     }
                 }
             }
