@@ -14,6 +14,13 @@ pipeline {
             }
         }
 
+        stage('Debug') {
+            steps {
+                bat 'where cmd'
+                bat 'cmd /c echo CMD is working'
+            }
+        }
+
         stage('Build') {
             steps {
                 script {
