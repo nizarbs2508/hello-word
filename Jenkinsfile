@@ -31,18 +31,11 @@ pipeline {
             }
         }
 
-        stage('Check PATH') {
-            steps {
-                bat 'echo %PATH%'
-            }
-        }
-
 
         stage('Test Docker') {
             steps {
-                bat 'set PATH=%PATH%;C:\\Program Files\\Docker\\Docker\\resources\\bin'
-                bat 'docker --version'
-                bat 'docker ps'
+                bat '"C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe" --version'
+                bat '"C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe" ps'
             }
         }
          stage('Build Docker Image') {
