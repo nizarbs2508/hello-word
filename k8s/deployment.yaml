@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: demo-1.0
-          image: nizarbsalem/hello-word:latest
+          image: nizarbsalem/hello-word-app:latest
           ports:
             - containerPort: 8080
 ---
