@@ -43,9 +43,10 @@ pipeline {
             }
         }
         
-        stage('Deploy to Kubernetes') {
+     stage('Deploy to Kubernetes') {
             steps {
                 script {
+                    echo "Deploying to Kubernetes with: ${K8S_DEPLOYMENT}"
                     bat "kubectl apply -f ${K8S_DEPLOYMENT}"
                 }
             }
